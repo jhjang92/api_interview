@@ -1,23 +1,35 @@
-import React from 'react';
+import React, { useRef } from 'react';
 import styled from 'styled-components';
 
-const BoardWrite = ({ name, content, onChangeField }) => {
+const BoardWrite = ({ onChangeField, onPublish }) => {
+  const nameInput = useRef(null);
+  const contentInput = useRef(null);
+
   const onChangeTaget = (e) => {
-    console.log(e.target.name);
     onChangeField({ key: e.target.name, value: e.target.value });
   };
-
+  const onWritePublish = () => {
+    if (nameInput.current.value === '' || contentInput.current.value === '') {
+      alert('입력 후 등록해 주세요.');
+      return;
+    }
+    onPublish();
+    nameInput.current.value = '';
+    contentInput.current.value = '';
+  };
   return (
     <Section>
       <h3>글쓰기</h3>
       <Form>
         <StyledSpan>작성자 : </StyledSpan>
-        <WriteInput type="text" name="name" onChange={onChangeTaget}></WriteInput>
+        <WriteInput type="text" name="nickName" onChange={onChangeTaget} ref={nameInput}></WriteInput>
         <Br />
         <StyledSpan>내용 : </StyledSpan>
-        <TextArea type="text" name="content" onChange={onChangeTaget}></TextArea>
+        <TextArea type="text" name="content" onChange={onChangeTaget} ref={contentInput}></TextArea>
         <Br />
-        <StyledButton type="button">등록하기</StyledButton>
+        <StyledButton type="button" onClick={onWritePublish}>
+          등록하기
+        </StyledButton>
       </Form>
     </Section>
   );

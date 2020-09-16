@@ -1,15 +1,25 @@
 import React, { useEffect, useCallback } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import BoardWrite from '../../components/BoardWrite';
-import { changeField, initialize } from '../../modules/write';
+import { changeField, initialize, m_writeBoard } from '../../modules/write';
 
 const WriteContainer = () => {
+  console.log('WriteContainer');
   const dispatch = useDispatch();
-  const { name, content } = useSelector(({ write }) => ({
-    name: write.name,
+  const { nickName, content, board, boardError } = useSelector(({ write }) => ({
+    nickName: write.nickName,
     content: write.content,
+    boardError: write.boardError,
   }));
   const onChangeField = useCallback((payload) => dispatch(changeField(payload)), [dispatch]);
+  const onPublish = () => {
+    dispatch(
+      m_writeBoard({
+        nickName,
+        content,
+      }),
+    );
+  };
 
   useEffect(() => {
     return () => {
@@ -17,7 +27,11 @@ const WriteContainer = () => {
     };
   }, [dispatch]);
 
-  return <BoardWrite onChangeField={onChangeField} name={name} content={content} />;
+  if (boardError !== null) {
+    return <div>{boardError.message}</div>;
+  } else {
+    return <BoardWrite onChangeField={onChangeField} onPublish={onPublish} />;
+  }
 };
 
 export default WriteContainer;

@@ -7,10 +7,6 @@ import BoardWritePage from './pages/BoardWritePage';
 import styled from 'styled-components';
 
 function App() {
-  const Box = styled.div`
-    width: 800px;
-    margin: 0 auto;
-  `;
   return (
     <Box>
       <Route component={BoardListPage} path={['/@:nickname', '/']} exact />
@@ -19,5 +15,8 @@ function App() {
     </Box>
   );
 }
-
+const Box = styled.div`
+  width: 800px;
+  margin: 0 auto;
+`;
 export default App;
