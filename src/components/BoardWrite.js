@@ -1,16 +1,21 @@
 import React from 'react';
 import styled from 'styled-components';
 
-const BoardWrite = () => {
+const BoardWrite = ({ name, content, onChangeField }) => {
+  const onChangeTaget = (e) => {
+    console.log(e.target.name);
+    onChangeField({ key: e.target.name, value: e.target.value });
+  };
+
   return (
     <Section>
       <h3>글쓰기</h3>
       <Form>
         <StyledSpan>작성자 : </StyledSpan>
-        <WriteInput type="text"></WriteInput>
+        <WriteInput type="text" name="name" onChange={onChangeTaget}></WriteInput>
         <Br />
         <StyledSpan>내용 : </StyledSpan>
-        <TextArea type="text"></TextArea>
+        <TextArea type="text" name="content" onChange={onChangeTaget}></TextArea>
         <Br />
         <StyledButton type="button">등록하기</StyledButton>
       </Form>

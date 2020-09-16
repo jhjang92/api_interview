@@ -1,8 +1,8 @@
 import React from 'react';
-import BoardWrite from '../components/BoardWrite';
+import WriteContainer from '../containers/write/WriteContainer';
 
 const BoardWritePage = () => {
-  return <BoardWrite />;
+  return <WriteContainer />;
 };
 
 export default BoardWritePage;
