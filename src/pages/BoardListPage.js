@@ -1,8 +1,8 @@
 import React from 'react';
-import BoardList from '../components/BoardList';
+import ListBoardContainer from '../containers/lists/ListBoardContainer';
 
 const BoardListPage = () => {
-  return <BoardList />;
+  return <ListBoardContainer />;
 };
 
 export default BoardListPage;

@@ -4,7 +4,6 @@ import BoardWrite from '../../components/BoardWrite';
 import { changeField, initialize, m_writeBoard } from '../../modules/write';
 
 const WriteContainer = () => {
-  console.log('WriteContainer');
   const dispatch = useDispatch();
   const { nickName, content, board, boardError } = useSelector(({ write }) => ({
     nickName: write.nickName,
@@ -29,9 +28,8 @@ const WriteContainer = () => {
 
   if (boardError !== null) {
     return <div>{boardError.message}</div>;
-  } else {
-    return <BoardWrite onChangeField={onChangeField} onPublish={onPublish} />;
   }
+  return <BoardWrite onChangeField={onChangeField} onPublish={onPublish} />;
 };
 
 export default WriteContainer;

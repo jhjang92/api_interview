@@ -36,7 +36,7 @@ const BoardWrite = ({ onChangeField, onPublish }) => {
 };
 
 const Section = styled.section`
-  margin: 20px 0 0;
+  margin: 20px 0;
 `;
 const Form = styled.form`
   margin: 30px 0 0 30px;

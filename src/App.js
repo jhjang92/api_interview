@@ -16,7 +16,7 @@ function App() {
   );
 }
 const Box = styled.div`
-  width: 800px;
+  width: 1000px;
   margin: 0 auto;
 `;
 export default App;
